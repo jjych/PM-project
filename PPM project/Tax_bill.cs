@@ -43,11 +43,11 @@ namespace PPM_project
             lstView.Columns.Add("No", 35, HorizontalAlignment.Center);
             lstView.Columns.Add("계약항목", 100, HorizontalAlignment.Center);
             lstView.Columns.Add("발행연도", 120, HorizontalAlignment.Center);
-            lstView.Columns.Add("발행월", 100, HorizontalAlignment.Center);
+            lstView.Columns.Add("발행월", 80, HorizontalAlignment.Center);
             lstView.Columns.Add("발행일", 100, HorizontalAlignment.Center);
             lstView.Columns.Add("발행금액", 100, HorizontalAlignment.Center);
-            lstView.Columns.Add("발행상태", 100, HorizontalAlignment.Center);
-            lstView.Columns.Add("외래키", 100, HorizontalAlignment.Center);
+            lstView.Columns.Add("발행상태", 0, HorizontalAlignment.Center);
+            lstView.Columns.Add("외래키", 0, HorizontalAlignment.Center);
         }
         #endregion
 
@@ -216,6 +216,7 @@ namespace PPM_project
         private void btnModify_Click(object sender, EventArgs e)
         {
             int result = 0;
+            string str = txtAmt.Text.ToString();
             try
             {
                 if (MariaDB_Yee.DB_Connect())
@@ -224,13 +225,31 @@ namespace PPM_project
                     {
                         if (rdoState_0.Checked == true) //미발행
                         {
+                            // 콤마 제거후 DB에 넣기위해 쓰는 코드
+                            if (txtAmt.Text.Contains(","))
+                            {
+                                txtAmt.Text = str.Replace(",", string.Empty);
+                            }
+
                             result = MariaDB_Yee.Modify(cmbR_Year.Text, cmbR_Month.Text, Convert.ToInt32(txtAmt.Text), "0", txtEtc.Text, lstView.FocusedItem.SubItems[8].Text);
                             MessageBox.Show("세금계산서 발행대장을 저장하였습니다", "Modify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // 콤마제거된거 다시 붙여주기
+                            txtAmt.Text = string.Format("{0:n0}", str);
                         }
                         else if (rdoState_1.Checked == true) //발행
                         {
+                            // 콤마 제거후 DB에 넣기위해 쓰는 코드
+                            if (txtAmt.Text.Contains(","))
+                            {
+                                txtAmt.Text = str.Replace(",", string.Empty);
+                            }
+
                             result = MariaDB_Yee.Modify(cmbR_Year.Text, cmbR_Month.Text, Convert.ToInt32(txtAmt.Text), "1", txtEtc.Text, lstView.FocusedItem.SubItems[8].Text);
                             MessageBox.Show("세금계산서 발행대장을 저장하였습니다", "Modify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // 콤마제거된거 다시 붙여주기
+                            txtAmt.Text = string.Format("{0:n0}", str);
 
                         }
                     }

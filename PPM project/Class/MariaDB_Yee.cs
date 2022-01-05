@@ -264,7 +264,7 @@ namespace PPM_project
                     dic.Add("R_YEAR", mdr["R_YEAR"].ToString());
                     dic.Add("R_MONTH", mdr["R_MONTH"].ToString());
                     dic.Add("TINV_DD", mdr["TINV_DD"].ToString());
-                    dic.Add("R_AMT", mdr["R_AMT"].ToString());
+                    dic.Add("R_AMT", string.Format("{0:n0}", mdr["R_AMT"]));
                     dic.Add("R_STATE", mdr["R_STATE"].ToString());
                     dic.Add("R_ETC", mdr["R_ETC"].ToString());
 

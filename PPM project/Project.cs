@@ -42,14 +42,14 @@ namespace PPM_project
             lstView.FullRowSelect = true;
             //Clouumn 추가
             lstView.Columns.Add("CheckBox", "", 0, HorizontalAlignment.Center, 0);
-            lstView.Columns.Add("No", 35, HorizontalAlignment.Center);
-            lstView.Columns.Add("고객사명", 100, HorizontalAlignment.Center);
+            lstView.Columns.Add("No", 30, HorizontalAlignment.Center);
+            lstView.Columns.Add("고객사명", 60, HorizontalAlignment.Center);
             lstView.Columns.Add("프로젝트명", 120, HorizontalAlignment.Center);
             lstView.Columns.Add("구축기간", 150, HorizontalAlignment.Center);
             lstView.Columns.Add("적용제품", 0, HorizontalAlignment.Center);
             lstView.Columns.Add("외부제품", 0, HorizontalAlignment.Center);
             lstView.Columns.Add("적용방식", 0, HorizontalAlignment.Center);
-            lstView.Columns.Add("구축부서", 100, HorizontalAlignment.Center);
+            lstView.Columns.Add("구축부서", 70, HorizontalAlignment.Center);
             lstView.Columns.Add("구축담당", 0, HorizontalAlignment.Center);
             lstView.Columns.Add("유지보수시작일", 100, HorizontalAlignment.Center);
             lstView.Columns.Add("비고", 0, HorizontalAlignment.Center);
