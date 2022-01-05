@@ -279,6 +279,7 @@ namespace PPM_project
         private void button3_Click(object sender, EventArgs e)
         {
             int result = 0;
+            string str = txtTINV_AMT.Text.ToString();
             try
             {
                 if (button3.Text == "수정")
@@ -313,6 +314,12 @@ namespace PPM_project
                                     cmbC_STATE.Text = "3";
                                 }
 
+                                // 발행금액에 콤마표시가 있다면 콤마를 제거해서 text박스안에 넣어줌
+                                if (txtTINV_AMT.Text.Contains(","))
+                                {
+                                    txtTINV_AMT.Text = str.Replace(",", string.Empty);
+                                }
+
                                 result = JHSDB.MaintainUpdate(listView1.FocusedItem.SubItems[6].Text, txtC_NM.Text, txtC_TITLE.Text, Convert.ToDateTime(txtC_STDT.Text), Convert.ToDateTime(txtC_EDDT.Text),
                                     Convert.ToDateTime(txtC_UPDT.Text), cmbC_UPTYPE.Text, txtC_EMP.Text, cmbC_STATE.Text, txtC_ETC.Text, txtTINV_TO.Text, txtTINV_AMT.Text, cmbTINV_CYCLE.Text, txtTINV_MM.Text,
                                     txtTINV_DD.Text, txtTINV_ETC.Text, cmbCHK_TYPE.Text, cmbCHK_CYCLE.Text, txtCHK_MM.Text, txtCHK_EMP.Text, txtCHK_ETC.Text);
@@ -341,6 +348,9 @@ namespace PPM_project
                                 {
                                     cmbC_STATE.Text = "해지";
                                 }
+
+                                // 수정후 발행금액 텍스트상자에 콤마표시가없기때문에 다시 콤마를 찍어줘야함
+                                txtTINV_AMT.Text = string.Format("{0:n0}", str);
 
                                 // 색상 하얀색으로 초기화
                                 txtC_NM.BackColor = Color.White;
@@ -943,7 +953,7 @@ namespace PPM_project
         private void txtTINV_AMT_TextChanged(object sender, EventArgs e)
         {
             /*txtTINV_AMT.Text = String.Format("{0:#,0}", Convert.ToDouble(txtTINV_AMT.Text));*/ // 콤마주기때문에 자꾸 수정표시로뜸
-            change("TINV_AMT", txtTINV_AMT);
+            change("TINV_AMT" , txtTINV_AMT);
         }
         #endregion
 
